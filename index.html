@@ -1,48 +1,412 @@
 <!DOCTYPE html>
-<html lang="kk">
+<html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TezTasymal - Эвакуатор Қызметі</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Эвакуатор Астана</title>
+
+  <style>
+    /* --- Сброс и базовые стили --- */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Roboto', 'Open Sans', 'Cuprum', sans-serif;
+      font-weight: 700;
+      background-color: #E6F0FA;
+      color: #0C234B;
+      line-height: 1.5;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    /* Верхняя строка с телефоном */
+    .top-menu {
+      background-color: #0C234B;
+      padding: 6px 20px;
+    }
+
+    .phoneLine {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .phoneLine img {
+      width: 20px;
+      height: 20px;
+    }
+
+    .phoneNum {
+      color: #E6F0FA;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .phoneNum:hover {
+      text-decoration: underline;
+    }
+
+    /* Навигация */
+    .navbar {
+      background-color: #009BD9;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .navbar-brand p {
+      font-weight: 700;
+      color: white;
+      font-size: 1.5rem;
+      margin: 0;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: white;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #E6F0FA;
+    }
+
+    /* Фоновый блок с заголовком */
+    .bg {
+      background: linear-gradient(90deg, #009BD9 0%, #0C234B 100%);
+      color: white;
+      padding: 60px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .bg-block1 h1 {
+      font-weight: 700;
+      font-size: 2.4rem;
+      margin-bottom: 25px;
+      max-width: 700px;
+      line-height: 1.2;
+    }
+
+    /* Кнопки — контейнер */
+    .bg-buttons {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+
+    /* Кнопки */
+    .bgbut {
+      background-color: #0C234B;
+      color: white;
+      font-weight: 700;
+      border: none;
+      padding: 14px 35px;
+      cursor: pointer;
+      border-radius: 0; /* тупые углы */
+      font-size: 1.2rem;
+      user-select: none;
+      white-space: nowrap;
+      transition: background-color 0.3s ease;
+      text-align: center;
+    }
+
+    .bgbut:hover {
+      background-color: #0077B6;
+    }
+
+    /* Основные разделы */
+    .uslugi {
+      padding: 60px 20px;
+      background-color: #E6F0FA;
+      color: #0C234B;
+    }
+
+    .title h2 {
+      font-weight: 700;
+      font-size: 2rem;
+      margin-bottom: 40px;
+      color: #009BD9;
+    }
+
+    .row-uslugi {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .uslugi-block {
+      background-color: white;
+      padding: 25px 20px;
+      width: 30%;
+      box-shadow: 0 4px 6px rgba(12, 35, 75, 0.1);
+      border-radius: 6px;
+      text-align: center;
+      font-weight: 700;
+      color: #0C234B;
+    }
+
+    .uslugi-block h3 {
+      margin: 20px 0 25px;
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+
+    /* Заказ эвакуатора */
+    .kons {
+      background-color: #009BD9;
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .kons h2 {
+      margin-bottom: 30px;
+      font-size: 2rem;
+    }
+
+    .but-usl1, .but-usl2 {
+      background-color: white;
+      color: #0C234B;
+      border-radius: 0;
+      font-weight: 700;
+      padding: 15px 30px;
+      margin: 0 10px;
+      cursor: pointer;
+      border: none;
+      user-select: none;
+      transition: background-color 0.3s ease;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+    }
+
+    .but-usl1:hover, .but-usl2:hover {
+      background-color: #e6f0fa;
+      color: #0077B6;
+    }
+
+    /* О компании */
+    .about {
+      padding: 60px 20px;
+      background-color: white;
+      color: #0C234B;
+      font-weight: 700;
+    }
+
+    .about .title h2 {
+      color: #009BD9;
+      margin-bottom: 20px;
+    }
+
+    .about p,
+    .about ul li {
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    .about ul {
+      list-style: disc inside;
+      margin-bottom: 30px;
+    }
+
+    /* Контакты */
+    .contacts {
+      padding: 40px 20px;
+      background-color: #E6F0FA;
+      color: #0C234B;
+      font-weight: 700;
+    }
+
+    .contacts h2 {
+      color: #009BD9;
+      margin-bottom: 20px;
+    }
+
+    .contacts .phoneLine {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .contacts img {
+      width: 24px;
+      height: 24px;
+    }
+
+    .contacts a.phoneNum {
+      font-size: 1.3rem;
+      color: #0C234B;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .contacts a.phoneNum:hover {
+      text-decoration: underline;
+    }
+
+    /* Кнопка вызова внизу справа */
+    .call {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #0C234B;
+      color: white;
+      font-size: 24px;
+      width: 50px;
+      height: 50px;
+      text-align: center;
+      line-height: 50px;
+      border-radius: 0;
+      cursor: pointer;
+      user-select: none;
+      box-shadow: 0 4px 6px rgba(12, 35, 75, 0.4);
+      transition: background-color 0.3s ease;
+    }
+
+    .call:hover {
+      background-color: #0077B6;
+    }
+
+    .call i {
+      vertical-align: middle;
+    }
+
+    /* --- Адаптив --- */
+    @media (max-width: 767px) {
+      .bg {
+        padding: 40px 15px;
+      }
+
+      .bg-block1 h1 {
+        font-size: 1.8rem;
+      }
+
+      /* Кнопки ставим вертикально, ширина 100% */
+      .bg-buttons {
+        flex-direction: column;
+        width: 100%;
+        gap: 15px;
+      }
+
+      .bgbut {
+        width: 100%;
+        font-size: 1.2rem;
+        padding: 15px 0;
+      }
+
+      .uslugi-block {
+        width: 100%;
+        margin-bottom: 20px;
+      }
+
+      .nav-links {
+        justify-content: center;
+      }
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <div class="top-bar">
-      <span>+7 706 660 3023</span>
+
+  <!-- Верхняя строка с телефоном -->
+  <div class="top-menu">
+    <div class="phoneLine">
+      <img src="https://img.icons8.com/material-outlined/24/ffffff/phone--v1.png" alt="Телефон" />
+      <a class="phoneNum" href="tel:+77066603023">+7 706 660 30 23</a>
     </div>
-    <nav class="navbar">
-      <div class="logo">TezTasymal</div>
-      <ul>
-        <li><a href="#services">Қызметтер</a></li>
-        <li><a href="#contacts">Байланыс</a></li>
-      </ul>
-    </nav>
-    <section class="hero">
-      <h1>Жылдам және Сенімді Эвакуатор</h1>
-      <p>Астана және 250 км радиуста</p>
-      <a href="tel:+77066603023" class="call-btn">Қоңырау шалу</a>
-    </section>
-  </header>
+  </div>
 
-  <main>
-    <section id="services" class="services">
-      <h2>Біздің Қызметтер</h2>
-      <div class="service-list">
-        <div class="service">Жеңіл көліктерді тасымалдау</div>
-        <div class="service">Жол апаты кезінде көмек</div>
-        <div class="service">Қалааралық эвакуатор</div>
-        <div class="service">Қыста батпақтан шығару</div>
+  <!-- Навигация -->
+  <nav class="navbar" role="navigation">
+    <div class="navbar-brand">
+      <p>Эвакуатор Астана</p>
+    </div>
+    <div class="nav-links" role="menubar">
+      <a href="#uslugi" role="menuitem">Услуги</a>
+      <a href="#about" role="menuitem">О компании</a>
+      <a href="#contacts" role="menuitem">Контакты</a>
+    </div>
+  </nav>
+
+  <!-- Фоновый блок с заголовком и кнопками -->
+  <section class="bg">
+    <div class="bg-block1">
+      <h1>Круглосуточный эвакуатор в Астане и Акмолинской области</h1>
+      <div class="bg-buttons">
+        <button class="bgbut" onclick="window.location.href='tel:+77066603023'">Позвонить</button>
+        <button class="bgbut" onclick="window.open('https://wa.me/77066603023', '_blank')">WhatsApp</button>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="contacts" class="contacts">
-      <h2>Байланыс</h2>
-      <p>Телефон: <a href="tel:+77066603023">+7 706 660 3023</a></p>
-      <p>Мекенжай: Астана, Қазақстан</p>
-    </section>
-  </main>
+  <!-- Услуги -->
+  <section id="uslugi" class="uslugi">
+    <div class="title">
+      <h2>Наши услуги</h2>
+    </div>
+    <div class="row-uslugi">
+      <div class="uslugi-block">
+        <h3>Эвакуация легковых авто</h3>
+        <p>Быстро и аккуратно доставим ваш автомобиль.</p>
+      </div>
+      <div class="uslugi-block">
+        <h3>Эвакуация грузовиков</h3>
+        <p>Профессиональный подход к крупногабаритной технике.</p>
+      </div>
+      <div class="uslugi-block">
+        <h3>Автовоз</h3>
+        <p>Транспортировка автомобилей по всей Казахстану.</p>
+      </div>
+    </div>
+  </section>
 
-  <a class="fixed-call" href="tel:+77066603023">📞</a>
+  <!-- О компании -->
+  <section id="about" class="about">
+    <div class="title">
+      <h2>О компании</h2>
+    </div>
+    <p>Мы оказываем услуги эвакуации автомобилей круглосуточно по Акмолинской, Карагандинской, Северо-Казахстанской и Павлодарской областям.</p>
+    <ul>
+      <li>Быстрая подача эвакуатора</li>
+      <li>Опытные водители</li>
+      <li>Доступные цены</li>
+      <li>Круглосуточная поддержка</li>
+    </ul>
+  </section>
+
+  <!-- Контакты -->
+  <section id="contacts" class="contacts">
+    <h2>Контакты</h2>
+    <div class="phoneLine">
+      <img src="https://img.icons8.com/material-outlined/24/0C234B/phone--v1.png" alt="Телефон" />
+      <a class="phoneNum" href="tel:+77066603023">+7 706 660 30  23</a>
+    </div>
+  </section>
+
+  <!-- Кнопка вызова внизу справа -->
+  <button class="call" onclick="window.location.href='tel:+77025908935'" aria-label="Позвонить">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" width="24" height="24">
+      <path d="M6.62 10.79a15.466 15.466 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.21c1.21.49 2.53.76 3.88.76a1 1 0 011 1v3.5a1 1 0 01-1 1C10.07 21.5 2.5 13.93 2.5 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.35.27 2.67.76 3.88a1 1 0 01-.21 1.11l-2.2 2.2z"/>
+    </svg>
+  </button>
+
 </body>
 </html>
